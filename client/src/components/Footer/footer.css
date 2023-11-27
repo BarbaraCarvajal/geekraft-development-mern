@@ -1,0 +1,40 @@
+.bg-purple {
+  background-color: purple; 
+  color: white; 
+} 
+
+.footer a {
+  color: #333; 
+  text-decoration: none; 
+  display: inline-block; 
+  padding: 5px 10px; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  border: 2px solid transparent; 
+  border-radius: 5px; 
+}
+
+.footer a:hover {
+  color: #fff; 
+  background-color: #8a2be2;
+  transform: translateY(-4px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border: 1px solid #fff; 
+}
+
+.footer-h{
+  color: white;
+  font-size: 5rem;
+} 
+
+.footer{
+  background-color: purple;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 6px -6px gray;
+  --webkit-box-shadow: 0 8px 6px -6px gray;
+  border-bottom: solid gray !important;
+  transition: background-color 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  margin-top: auto; 
+}

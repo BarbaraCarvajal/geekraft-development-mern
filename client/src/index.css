@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&family=Roboto:wght@300;500&display=swap');
+html{
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+
+/*Productos*/
+.product-link{
+  text-decoration: none;
+  color: black;
+}
+
+/* .btn-primary {
+  width: 12rem !important;
+  height: 40px !important;
+  padding: 8px 16px !important;
+  font-size: 16px !important;
+  border-radius: 1rem !important;
+  background-color: purple !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+  background-color: #e0e0e0 !important;
+  border-color: #b0b0b0 !important;
+}
+ */
+
+
+/*position: relative;
+  padding-bottom: 2em;*/

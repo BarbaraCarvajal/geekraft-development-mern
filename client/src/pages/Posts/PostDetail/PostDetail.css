@@ -1,0 +1,35 @@
+.post-detail-container {
+  display: flex;
+  align-items: center; /* Alinea verticalmente la imagen y el contenido */
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Color de fondo claro para diferenciar del blanco */
+  margin-top: 20px;
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+.post-image {
+  max-width: 300px; /* Limita el ancho máximo de la imagen */
+  flex-shrink: 0; /* Evita que la imagen se reduzca */
+}
+
+.post-image img {
+  width: 100%; /* Hace que la imagen sea completamente receptiva dentro de su contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 1rem; /* Bordes redondeados para la imagen */
+  
+}
+
+.post-content {
+  flex: 1; /* Permite que el contenido llene el espacio restante */
+}
+
+.post-content h2 {
+  color: #333; /* Color oscuro para el título */
+  margin-bottom: 10px;
+}
+
+.post-content p {
+  color: #555; /* Color oscuro para el texto */
+}

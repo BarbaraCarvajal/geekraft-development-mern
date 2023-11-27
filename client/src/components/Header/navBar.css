@@ -1,0 +1,164 @@
+/* Bloque de estilos para la barra de navegación */
+.navbar-purple {
+  background-color: purple;
+  height: 60px;
+  padding: 0 20px;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 8px 6px -6px gray;
+  --webkit-box-shadow: 0 8px 6px -6px gray;
+  border-bottom: solid gray !important;
+  transition: background-color 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Bloque de estilos para el cambio de color de fondo al hacer hover */
+.navbar-purple:hover {
+  background-color: #8a2be2;
+  transition: background-color 0.5s ease;
+}
+
+/* Bloque de estilos para los enlaces en la barra de navegación */
+.navbar-purple .nav-link {
+  color: white;
+  transition: color 0.3s ease;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Bloque de estilos para el efecto de levantamiento al hacer hover */
+.navbar-purple .nav-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.active {
+  border-bottom: 2px solid white !important;
+}
+
+/* Logo */
+.logo {
+  width: 3rem;
+  margin-right: 0.5rem;
+  color: white;
+}
+
+.navbar-brand {
+  transition: transform 0.3s ease; 
+  color: white;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 2px;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+
+/* Estilo para el botón dropdown para que coincida con los otros nav-link */
+.dropdown-toggle.nav-link {
+  background-color: transparent;  
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border: none; 
+}
+
+/* Estilo para el dropdown-menu para que coincida con el navbar-collapse */
+.dropdown-menu {
+  background-color: rgba(127, 57, 240, 0.98); 
+  border-radius: 1rem; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para los dropdown-item para que coincidan con nav-link */
+.dropdown-item {
+  color: white; 
+  transition: color 0.3s ease; 
+}
+
+/* Estilo para los dropdown-item al hacer hover para que coincidan con nav-link */
+.dropdown-item:hover {
+  color: #42ead9; 
+  background-color: transparent; 
+}
+
+/* Estilo para el ícono de carrito */
+.navbar-purple .nav-link i {
+  margin-right: 5px;
+}
+
+/* Estilos para el campo de búsqueda */
+.search-input {
+  background-color: transparent; 
+  border: none; 
+  border-bottom: 2px solid white; 
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px; 
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilos para el campo de búsqueda al enfocar */
+.search-input:focus {
+  background-color: #fff;
+  border-color: #8a2be2; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+}
+
+/* Estilo personalizado para el botón de hamburguesa */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Cambiar el color y el tamaño del ícono de hamburguesa */
+.custom-toggler .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.custom-toggler {
+  border: none;
+}
+
+.navbar-purple .nav-blog-link {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-purple .nav-blog-link:hover {
+  color: #42ead9;
+  background-color: transparent;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-nav {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.navbar-nav .nav-item {
+  list-style-type: none;
+  margin: 1rem;
+}
+
+/* Ajustes de z-index */
+.navbar-collapse {
+  z-index: 1020;
+  background-color: rebeccapurple;
+  border-radius: 1rem;
+}
+
+.cart-item{
+  color: white;
+  margin-top: 4rem;
+}

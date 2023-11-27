@@ -1,0 +1,49 @@
+/* Button Styles */
+.btn {
+  padding: 0.5em 1em;
+  max-width: 150px; /* Prevents overly wide buttons */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: purple;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn:hover {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 12px;
+}
+
+/* Modal Styles */
+.ant-modal {
+  transition: transform 0.3s ease-out;
+}
+
+.nameCategory{
+  font-size: 1.5rem;
+}

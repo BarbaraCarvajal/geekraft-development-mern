@@ -1,0 +1,60 @@
+/* Main layout adjustments */
+.col-md-9 {
+  padding-right: 30px; /* Adjusts padding to the right of the main content area */
+}
+
+/* List group and items styling */
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px; /* Adds padding to the right of each list item */
+}
+
+/* Post details styling */
+.post-details {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased gap between elements */
+  margin-right: 20px; /* Adds margin to the right of the post details */
+}
+
+/* Post image styling */
+.post-image {
+  width: 80px; /* Fixed width for the image */
+  height: 80px; /* Fixed height to maintain aspect ratio */
+  object-fit: cover; /* Ensures the image covers the allocated space */
+  border-radius: 1rem;
+}
+
+/* Post title styling */
+.post-title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+/* Post description styling */
+.post-description {
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Button styling */
+.btn-primary {
+  padding: 0.375rem 0.75rem !important; 
+  margin-left: 15px; /* Adds margin to the left of the button to avoid sticking to the right edge */
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .col-md-9 {
+    padding-right: 2%; /* Percentage-based padding for larger screens */
+  }
+}
+
+/* If centering is desired */
+.col-md-9 {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-aligns the child elements */
+}

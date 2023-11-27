@@ -1,0 +1,40 @@
+.blog-posts {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f4f4f4; /* Fondo de color claro diferente al blanco */
+  padding: 1rem;
+}
+
+.blog-post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  background-color: #fff; /* Fondo blanco para cada post */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra ligera para dar profundidad */
+}
+
+.blog-post-image {
+  width: 150px; /* Ancho fijo para la imagen */
+  height: 150px; /* Altura fija para mantener la proporción */
+  object-fit: cover;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.blog-post-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.blog-post-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-text {
+  color: #666;
+  margin-bottom: 1rem;
+}

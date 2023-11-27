@@ -1,0 +1,29 @@
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-details {
+  display: flex;
+  gap: 15px; /* Espacio entre la imagen y los detalles del producto */
+}
+
+.product-image {
+  width: 80px; /* Tamaño fijo para la imagen */
+  height: 80px; /* Tamaño fijo para mantener la proporción */
+  object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado */
+}
+
+.product-title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.product-description {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.btn-primary {
+  padding: 0.375rem 0.75rem !important; /* Tamaño del botón */
+}

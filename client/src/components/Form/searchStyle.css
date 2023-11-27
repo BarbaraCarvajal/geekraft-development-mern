@@ -1,0 +1,12 @@
+/* Agregar estilos CSS para el botón en el efecto hover */
+.btn-purple {
+  background-color: purple; /* Color morado */
+  border-color: purple; /* Borde morado */
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.btn-purple:hover {
+  background-color: #8a2be2; /* Color púrpura más claro en el hover */
+  border-color: #8a2be2; /* Borde púrpura más claro en el hover */
+}
