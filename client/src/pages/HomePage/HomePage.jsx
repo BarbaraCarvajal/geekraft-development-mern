@@ -95,6 +95,27 @@ const HomePage = () => {
     if (checked.length || radio.length) filterProduct();
   }, [checked, radio]);
 
+  const addProductToCart = (product) => {
+    // Verificar si el producto ya está en el carrito
+    const existingProduct = cart.find((item) => item._id === product._id);
+    if (existingProduct) {
+      // Incrementar la cantidad
+      const updatedCart = cart.map((cartItem) =>
+        cartItem._id === product._id
+          ? { ...cartItem, cartQuantity: cartItem.cartQuantity + 1 }
+          : cartItem
+      );
+      setCart(updatedCart);
+    } else {
+      // Agregar nuevo producto con la cantidad inicial de 1
+      const newProductToAdd = { ...product, cartQuantity: 1 };
+      setCart(currentCart => [...currentCart, newProductToAdd]);
+
+    }
+    // Actualizar el almacenamiento local
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
   const filterProduct = async () => {
     try {
       const { data } = await axios.post("/api/v1/product/product-filters", {
@@ -185,11 +206,7 @@ const HomePage = () => {
                         <button
                           className="btn add-to-cart-button"
                           onClick={() => {
-                            setCart([...cart, product]);
-                            localStorage.setItem(
-                              "cart",
-                              JSON.stringify([...cart, product])
-                            );
+                            addProductToCart(product);
                             toast.success("Producto agregado al carrito 🛒");
                           }}
                         >

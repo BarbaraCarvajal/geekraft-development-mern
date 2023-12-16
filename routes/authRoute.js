@@ -8,6 +8,7 @@ import {
   registerController,
   testController,
   updateProfileController,
+  verifyEmailController,
 } from "../controllers/authController.js";
 import {
   isAdmin,
@@ -24,6 +25,9 @@ router.post("/register", registerController);
 
 //LOGIN POST
 router.post("/login", loginController);
+
+//VERIFY EMAIL POST
+router.get('/id/verify/:token', verifyEmailController);
 
 //Forgot Password POST
 router.post("/forgot-password", forgotPasswordController);

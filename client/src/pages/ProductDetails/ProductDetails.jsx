@@ -11,6 +11,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
+  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
   //detalles iniciales
@@ -39,6 +40,28 @@ const ProductDetails = () => {
     } catch (error) {}
   };
 
+  // Función para agregar productos al carrito
+  const addProductToCart = (productToAdd) => {
+    // Verificar si el producto ya está en el carrito
+    const existingProduct = cart.find((item) => item._id === productToAdd._id);
+    if (existingProduct) {
+      // Incrementar la cantidad
+      const updatedCart = cart.map((cartItem) =>
+        cartItem._id === productToAdd._id
+          ? { ...cartItem, cartQuantity: cartItem.cartQuantity + quantity }
+          : cartItem
+      );
+      setCart(updatedCart);
+    } else {
+      // Agregar nuevo producto con la cantidad seleccionada
+      const newProductToAdd = { ...productToAdd, cartQuantity: quantity };
+      setCart([...cart, newProductToAdd]);
+    }
+    // Actualizar el almacenamiento local
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+
   return (
     <Layout>
       <div className="product-details-container">
@@ -56,14 +79,23 @@ const ProductDetails = () => {
               Quedan {product.quantity} {product.name} disponibles
             </p>
             <p className="category">Categoría: {product.category?.name}</p>
+  
+            <div className="product-quantity">
+              <label htmlFor="quantity">Cantidad:</label>
+              <input
+                type="number"
+                id="quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value, 10)))}
+                min="1"
+                max={product.quantity} // Asegúrate de no permitir una cantidad mayor al stock disponible
+              />
+            </div>
+  
             <button
               className="btn btn-primary"
               onClick={() => {
-                setCart([...cart, product]);
-                localStorage.setItem(
-                  "cart",
-                  JSON.stringify([...cart, product])
-                );
+                addProductToCart(product);
                 toast.success("Producto agregado al carrito 🛒");
               }}
             >
@@ -88,18 +120,14 @@ const ProductDetails = () => {
                     <h5>{p.name}</h5>
                     <button
                       className="btn details-button"
-                      onClick={() => navigate(`/product/${product.slug}`)}
+                      onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       Más detalles
                     </button>
                     <button
                       className="btn btn-primary"
                       onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
+                        addProductToCart(p);
                         toast.success("Producto agregado al carrito 🛒");
                       }}
                     >
@@ -114,6 +142,7 @@ const ProductDetails = () => {
       </div>
     </Layout>
   );
+  
 };
 
 export default ProductDetails;

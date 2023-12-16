@@ -76,7 +76,7 @@ const Products = () => {
                   <img
                     src={`/api/v1/product/product-photo/${producto._id}`}
                     alt={producto.name}
-                    className="product-image"
+                    className="product-image2"
                   />
                   <div>
                     <h5 className="product-title">{producto.name}</h5>

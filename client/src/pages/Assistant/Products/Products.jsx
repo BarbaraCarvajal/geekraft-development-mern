@@ -76,14 +76,14 @@ const ProductsAssistant = () => {
                   <img
                     src={`/api/v1/product/product-photo/${producto._id}`}
                     alt={producto.name}
-                    className="product-image"
+                    className="product-image2"
                   />
                   <div>
                     <h5 className="product-title">{producto.name}</h5>
                     <p className="product-description">{producto.description.substring(0, 100)}</p>
                   </div>
                 </div>
-                <Link to={`/dashboard/admin/product/${producto.slug}`} className="btn btn-primary">
+                <Link to={`/dashboard/assistant/product/${producto.slug}`} className="btn btn-primary">
                   Modificar
                 </Link>
               </li>

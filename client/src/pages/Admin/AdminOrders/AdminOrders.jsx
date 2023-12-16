@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import AdminMenu from "../../components/AdminMenu/AdminMenu";
-import Layout from "../../components/Layout/Layout";
-import { useAuth } from "../../context/auth";
+import AdminMenu from "../../../components/AdminMenu/AdminMenu";
+import Layout from "../../../components/Layout/Layout";
+import { useAuth } from "../../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
+import "./orders.css";
+
 const { Option } = Select;
 
 const { o } = Select;
@@ -40,13 +42,23 @@ const AdminOrders = () => {
   const handleChange = async (orderId, value) => {
     try {
       const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
-        status: value
+        status: value,
       });
       getOrders();
     } catch (error) {
       console.log(error);
     }
   };
+
+  const calculateOrderTotal = (products) => {
+    // Asegúrate de que products es un array antes de llamar a reduce
+    if (!products || !Array.isArray(products)) {
+      return 0;
+    }
+  
+    return products.reduce((acc, product) => acc + product.price, 0);
+  };
+  
 
   return (
     <Layout title={"Pedidos"}>
@@ -57,9 +69,10 @@ const AdminOrders = () => {
         <div className="col-md-9">
           <h1>Todos los pedidos</h1>
           {orders?.map((o, i) => {
+            const orderTotal = calculateOrderTotal(o.products);
             return (
-              <div className="border shadow">
-                <table className="table">
+              <div className="adminOrder adminOrder-shadow">
+                <table className="table table-striped">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -68,6 +81,7 @@ const AdminOrders = () => {
                       <th scope="col">Fecha</th>
                       <th scope="col">Pago</th>
                       <th scope="col">Cantidad</th>
+                      <th scope="col">Total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -90,29 +104,28 @@ const AdminOrders = () => {
                       <td>{moment(o?.createdAt).fromNow()}</td>
                       <td>{o?.payment.success ? "Exito" : "Fallido"}</td>
                       <td>{o?.products?.length}</td>
+                      <td>{orderTotal.toFixed(2)}</td>
                     </tr>
                   </tbody>
                 </table>
-                {/* <div className="container">
+                <div className="container">
                   {o?.products?.map((p, i) => (
-                    <div className="row mb-2 p-3 card flex-row">
-                      <div className="col-md-4">
+                    <div key={p._id} className="adminOrder-list-item">
+                      <div className="adminOrder-list-item-image">
                         <img
                           src={`/api/v1/product/product-photo/${p._id}`}
-                          className="card-img-top"
+                          className="adminOrder-small-img"
                           alt={p.name}
-                          width="100px"
-                          height={"100px"}
+                          width={"50px"}
                         />
                       </div>
-                      <div className="col-md-8">
-                        <h5 className="card-title">{p.name}</h5>
-                        <p className="card-text">{p.description}</p>
-                        <p className="card-text">${p.price}</p>
+                      <div className="adminOrder-list-item-details">
+                        <h5 className="adminOrder-title">{p.name}</h5>
+                        <p className="adminOrder-price">${p.price}</p>
                       </div>
                     </div>
                   ))}
-                </div> */}
+                </div>
               </div>
             );
           })}

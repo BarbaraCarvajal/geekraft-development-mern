@@ -5,15 +5,28 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      minlength: 3,
+      maxlength: 50,
     },
     email: {
       type: String,
       required: true,
       unique: true,
+      minlength: 3,
+      maxlength: 50,
+    },
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+    emailToken: {
+      type: String,
     },
     password: {
       type: String,
       required: true,
+      minlength: 3,
+      maxlength: 1024,
     },
     phone: {
       type: String,
@@ -21,10 +34,6 @@ const userSchema = new mongoose.Schema(
     },
     address: {
       type: {},
-      required: true,
-    },
-    answer: {
-      type: String,
       required: true,
     },
     role: {

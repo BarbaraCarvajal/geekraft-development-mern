@@ -144,7 +144,7 @@ const UpdateProductAssistant = () => {
               </div>
             )}
             <div className="m-1 w-75">
-              <div className="mb-3">
+              <div className="mb-3 text-center">
                 <label className="btn btn-outline-secondary col-md-12">
                   {photo ? photo.name : "Actualizar imagen"}
                   <input

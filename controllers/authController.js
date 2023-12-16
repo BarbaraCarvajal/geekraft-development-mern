@@ -1,55 +1,78 @@
 import userModel from "../models/userModel.js";
 import orderModel from "../models/orderModel.js";
+import Token from "../models/token.js";
+import sendEmail from "./../utils/nodemailer.js";
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
+import crypto from "crypto";
+import validator from "validator";
 
 export const registerController = async (req, res) => {
+  const { name, email, password, phone, address } = req.body;
   try {
-    const { name, email, password, phone, address, answer } = req.body;
-    //validations
-    if (!name) {
-      return res.send({ message: "El nombre es requerido" });
+    // Validaciones
+    if (!name || !email || !password || !phone || !address) {
+      return res
+        .status(400)
+        .send({ message: "Todos los campos son requeridos" });
     }
-    if (!email) {
-      return res.send({ message: "El correo es requerido" });
+    if (!validator.isEmail(email)) {
+      return res.status(400).send({ message: "Ingresa un email válido" });
     }
     if (!password) {
-      return res.send({ message: "La contraseña es requerida" });
+      return res
+        .status(400)
+        .send({ message: "La contraseña debe ser más segura" });
     }
-    if (!phone) {
-      return res.send({ message: "El telefono es requerido" });
+    if(!user.verified){
+      let token = await Token.findOne({ userId: user._id });
+      if(!token){
+        token = await new Token({
+          userId: user._id,
+          token: crypto.randomBytes(32).toString("hex"),
+        }).save();
+        const url = `${process.env.BASE_URL}/users/verify-email/${token.token}`;
+        await sendEmail(user.email, "Verifica tu correo electrónico", url);
+        
+      }
+      return res.status(400).send({ message: "Verifica tu correo electrónico" });
     }
-    if (!address) {
-      return res.send({ message: "La dirección es requerida" });
-    }
-    if (!answer) {
-      return res.send({ message: "La respuesta es requerida" });
-    }
-    //check user
-    const exisitingUser = await userModel.findOne({ email });
-    //si el usuario existe...
-    if (exisitingUser) {
-      return res.status(200).send({
+
+    // Verificar si el usuario ya existe
+    let existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(409).send({
         success: false,
-        message: "Already Register please login",
+        message: "El usuario ya está registrado. Por favor, inicia sesión.",
       });
     }
-    //registrar usuario
+
+    // Crear nuevo usuario
     const hashedPassword = await hashPassword(password);
-    //save
-    const user = await new userModel({
+    const emailToken = crypto.randomBytes(64).toString("hex");
+    const newUser = new userModel({
       name,
       email,
+      password: hashedPassword,
       phone,
       address,
-      password: hashedPassword,
-      answer,
-    }).save();
+      emailToken: emailToken,
+      verified: false,
+    });
 
+    // Guardar usuario
+    user = await newUser.save();
+
+    // Crear token de verificación
+    const token = await new Token({
+      userId: user._id,
+      token: crypto.randomBytes(32).toString("hex"),
+    }).save();
+    const url = `${process.env.BASE_URL}/users/verify-email/${token.token}`;
+    await sendEmail(user.email, "Verifica tu correo electrónico", url);
+    // Respuesta
     res.status(201).send({
-      success: true,
-      message: "Usuario registrado satisfactoriamente",
-      user,
+      message: "Email enviado a tu cuenta. Por favor verifica tu correo.",
     });
   } catch (error) {
     console.log(error);
@@ -60,6 +83,76 @@ export const registerController = async (req, res) => {
     });
   }
 };
+
+//VERIFY EMAIL
+export const verifyEmailController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ _id: req.params.id });
+    if (!user) return res.status(400).send({ message: "Link inválido" });
+
+      const token = await token.findOne({
+        userId: user._id,
+        token: req.params.token,
+      });
+      if (!token) return res.status(400).send({ message: "Link inválido" });
+
+      await user.updateOne({_id: user._id, verified: true });
+      await token.remove();
+
+      res.status(200).send({
+        success: true,  
+        message: "Cuenta verificada exitosamente",
+      });
+  } catch (error){
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error al verificar el correo electrónico",
+      error,
+    });
+  }
+};
+
+/* //VERIFY EMAIL
+export const verifyEmailController = async (req, res) => {
+  try {
+    const emailToken = req.params.token;
+    if (!emailToken) {
+      return res.status(404).send({ message: "Token no encontrado" });
+    }
+
+    const user = await userModel.findOne({ emailToken });
+
+    if (user) {
+      user.emailToken = null;
+      user.isVerified = true;
+      await user.save();
+
+      // Asegúrate de no enviar información sensible
+      const userData = {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        role: user.role,
+        isVerified: user.isVerified,
+        // No incluir: password, tokens secretos, etc.
+      };
+
+      res.status(200).json({
+        success: true,
+        message: 'Correo verificado exitosamente.',
+        user: userData,
+      });
+    } else {
+      res.status(404).send({ message: "Token invalido" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error en el servidor" });
+  }
+}; */
 
 //POST LOGIN
 export const loginController = async (req, res) => {
@@ -89,7 +182,7 @@ export const loginController = async (req, res) => {
     }
     //token
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
+      expiresIn: "1d",
     });
     res.status(200).send({
       success: true,
@@ -117,18 +210,15 @@ export const loginController = async (req, res) => {
 //POST FORGOT PASSWORD
 export const forgotPasswordController = async (req, res) => {
   try {
-    const { email, answer, newPassword } = req.body;
+    const { email, newPassword } = req.body;
     if (!email) {
       res.status(400).send({ message: "Correo requerido" });
-    }
-    if (!answer) {
-      res.status(400).send({ message: "Respuesta es requerida" });
     }
     if (!newPassword) {
       res.status(400).send({ message: "Nueva contraseña es requerida" });
     }
     //check user
-    const user = await userModel.findOne({ email, answer });
+    const user = await userModel.findOne({ email });
     //Validación
     if (!user) {
       return res.status(400).send({

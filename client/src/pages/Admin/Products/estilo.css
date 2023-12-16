@@ -5,13 +5,14 @@
 
 .product-details {
   display: flex;
-  gap: 15px; /* Espacio entre la imagen y los detalles del producto */
+  gap: 15px; 
 }
 
-.product-image {
-  width: 80px; /* Tamaño fijo para la imagen */
-  height: 80px; /* Tamaño fijo para mantener la proporción */
-  object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado */
+.product-image2 {
+  width: 80px ; 
+  height: 80px ; 
+  object-fit: cover;
+  border-radius: 1rem;
 }
 
 .product-title {
@@ -25,5 +26,5 @@
 }
 
 .btn-primary {
-  padding: 0.375rem 0.75rem !important; /* Tamaño del botón */
+  padding: 0.375rem 0.75rem !important; 
 }

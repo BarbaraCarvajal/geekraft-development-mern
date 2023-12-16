@@ -38,3 +38,16 @@
   font-family: "Poppins", sans-serif;
   margin-top: auto; 
 }
+
+/* CSS modificado */
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 75px; /* Ajusta según sea necesario */
+  margin-left: 10px; /* Espacio entre el texto y la imagen */
+  margin-bottom: 1rem;
+}

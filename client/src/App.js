@@ -24,7 +24,7 @@ import Search from './pages/Search/Search';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Categories from './pages/Categories/Categories';
 import CartPage from './pages/CartPage/CartPage';
-import AdminOrders from './pages/Admin/AdminOrders';
+import AdminOrders from './pages/Admin/AdminOrders/AdminOrders';
 import AssistantRoute from './components/Routes/AssistantRoute';
 import AssistantDashboard from './pages/Assistant/AssistantDashboard';
 import CreatePost from './pages/Admin/CreatePost';
@@ -40,6 +40,7 @@ import UpdatePostAssistant from './pages/Assistant/UpdatePost/UpdatePost';
 import ProductsAssistant from './pages/Assistant/Products/Products';
 import UpdateProductAssistant from './pages/Assistant/Updateproduct/UpdateProduct';
 import CategoryProduct from './pages/CategoryProduct/CategoryProduct';
+import VerifyEmail from './pages/Auth/VerifyEmail';
 
 function App() {
   return (
@@ -96,6 +97,7 @@ function App() {
       </Route>
 
       <Route path="/register" element={<Register />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path="/login" element={<Login />} />
       <Route path='/forgot-password' element={<ForgotPassword/>}/>
 

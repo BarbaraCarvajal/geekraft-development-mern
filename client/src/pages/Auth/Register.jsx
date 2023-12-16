@@ -13,8 +13,9 @@ const Register = () => {
   const [phone, setPhone] = useState(0);
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [answer, setAnswer] = useState("");
 
+  const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
 
   //Inicialización de hook para redireccionar
   const navigate = useNavigate();
@@ -29,11 +30,10 @@ const Register = () => {
         password,
         phone,
         address,
-        answer
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        navigate("/login");
+      
       } else {
         toast.error(res.data.message);
       }
@@ -69,7 +69,7 @@ const Register = () => {
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              type="mail"
+              type="email"
               className="form-control"
               id="exampleInputEmail1"
               placeholder="geekraft@mail.com"
@@ -119,26 +119,9 @@ const Register = () => {
               required
             />
           </div>
-
-          <div className="mb-3">
-            <label htmlFor="exampleInputAddress" className="form-label">
-              ¿Cuál es tu color favorito?
-            </label>
-            <input
-              onChange={(e) => setAnswer(e.target.value)}
-              value={answer}
-              type="text"
-              className="form-control"
-              id="exampleInputAddress"
-              placeholder="ejem: rosado"
-              required
-            />
-          </div>
-
           <button type="submit" className="btn btn-primary">
             Crear cuenta
           </button>
-          
         </form>
       </div>
     </Layout>

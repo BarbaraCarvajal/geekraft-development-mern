@@ -1,29 +1,121 @@
-.cart-page {
-  margin-top: 64px;
+.cart-page .card {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
 }
 
-.cart-page h1 {
-  padding: 15px !important;
-  font-family: "roboto", sans-serif;
-  font-weight: normal;
-  background-color: rgba(0, 0, 255, 0.072) !important;
+.cart-page .card img {
+  border-radius: 4px;
+  width: auto;
+  height: 100px;
+  margin-right: 10px;
 }
-.cart-page h1 > p {
-  font-size: 20px;
-  margin-top: 10px;
+
+.cart-page .card .card-info {
+  flex-grow: 1;
+}
+
+.cart-page .card .card-info h5 {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+.cart-page .card .card-info p {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.cart-page .card .btn-danger {
+  margin-left: auto;
+}
+
+.cart-page .products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .cart-page .card {
-  padding: 5px !important;
-  height: 150px !important;
-  margin-bottom: 5px !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
-.cart-page .cart-remove-btn {
+
+.cart-page .card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-img-top{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.transferencia {
+  width: 300px;
+  height: 200px;
+  border-radius: 1rem;
+
+}
+
+.cart-items-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cart-item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 10px 0;
 }
-.cart-page .cart-summary {
+
+.cart-item-image img {
+  width: auto;
+  height: 100px;
+  margin-right: 15px;
+}
+
+.cart-item-info {
+  flex-grow: 1;
+}
+
+.cart-item-title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.cart-item-price,
+.cart-item-quantity,
+.cart-item-total {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.remove-item-button {
+  margin-left: auto;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-controls button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  background-color: #800080;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.quantity-controls span {
+  min-width: 20px;
   text-align: center;
-  /* margin-top: -140px !important; */
 }

@@ -30,7 +30,7 @@
   border-radius: 10px;
   transform: translateY(0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Bloque de estilos para el efecto de levantamiento al hacer hover */
@@ -40,13 +40,15 @@
 }
 
 .active {
-  border-bottom: 2px solid white !important;
+  border-bottom: 2px solid #42ead9 !important;
+  color: white !important;
 }
 
 /* Logo */
 .logo {
-  width: 3rem;
+  width: 3rem !important;
   margin-right: 0.5rem;
+  margin-top: 1rem;
   color: white;
 }
 
@@ -130,7 +132,7 @@
   padding: 10px 15px;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-purple .nav-blog-link:hover {
